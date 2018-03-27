@@ -4,8 +4,9 @@ import sys
 import random
 from model import Model
 from neuron import Neuron
-from sample import Sample
+import sample
 from util import isNeighbor
+import copy
 
 WIDTH = 850
 HEIGHT = 450
@@ -86,27 +87,28 @@ def drawButtons():
         #DRAW TEXT
         drawText(btn_cords, mouseHover(BTN_DIM,btn_cords),x)
 
+def displaySamples(samples):
+    for s in samples:
+        edited_s = copy.deepcopy(s)
+        del edited_s[19][20]
+        grid = s
+        for r in s:
+            print r
+        print "\n" 
+        drawGrid(input_cord)
+        pyg.display.update()
+        pyg.time.delay(100)
 
 def train():
     for x in xrange(n_array_size):
-        s = Sample(GRID_DIM)
         print "\n\nTraining: {}".format(x)
-        samples = s.generateSamples(x,50,50)
+        samples = sample.generateSamples(x,50,50,GRID_DIM)
+        displaySamples(samples)
         m.train(samples)
         n_array.append(Neuron(m.weights,m.threshold))
         m.renewVariables()
 
     print "Finished"
-    edited_s = samples
-    del edited_s[0][19][20]
-    for r in edited_s[0]:
-        for c in r:
-            print "{} ".format(r)
-        print "\n"
-    grid = edited_s[0]
-    print "Finished"
-
-
 
 def noise():
     for r in xrange(GRID_DIM[0]):
@@ -146,16 +148,12 @@ def processMousAction(btn_index, mouse, event = None):
         for x in xrange(10):
             if event.key == keys[x]:
                 print "Pressed {}".format(x)
-                s = Sample(GRID_DIM)
-                grid = s.example[x]
+                grid = sample.example[x]
 
 def draw():
     drawInputPanel()
     drawOutputPanel()
     drawButtons()
-
-def update():
-    pass
 
 def run():
     while True:
@@ -172,7 +170,6 @@ def run():
 
         screen.fill(BACKGROUND)
         draw()
-        update()
         pyg.display.update()
         clock.tick(FPS)
 

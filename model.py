@@ -12,7 +12,6 @@ class Model(object):
         self.eta = 0.3
         self.epoch = 0
 
-
     def train(self,samples):
         def activation(s):
             sum = 0.0
@@ -31,9 +30,6 @@ class Model(object):
                     self.weights[r][c] += self.eta * error * s[r][c]
             #Adjust threshold
             self.threshold += self.eta * error * -1
-
-
-
         self.epoch +=1
 
     def renewVariables(self):
