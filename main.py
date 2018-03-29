@@ -40,8 +40,8 @@ n_array_size = 10
 n_array = []
 
 #samples
-sample_size1 = 40
-sample_size2 = 40
+sample_size1 = 80
+sample_size2 = 80
 
 pyg.init()
 clock = pyg.time.Clock()
@@ -136,7 +136,7 @@ def train():
 
 def getNoise(r,c):
     global grid
-    return round(random.uniform(0.1,0.3),3) if isNeighbor(grid,r,c) else round(random.uniform(0.01,0.03),3)
+    return round(random.uniform(0,0.3),3) if isNeighbor(grid,r,c) else round(random.uniform(0,0.03),3)
 
 def noise():
     for r in xrange(GRID_DIM[0]):
