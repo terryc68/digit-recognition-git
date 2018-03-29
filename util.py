@@ -18,4 +18,10 @@ def isNeighbor(grid,r,c):
             f(r+1,c-2),f(r+1,c-1),f(r+1,c),f(r+1,c+1),f(r+1,c+2),
             f(r+2,c-2),f(r+2,c-1),f(r+2,c),f(r+2,c+1),f(r+2,c+2)]
 
+    # list = [
+    #         f(r-1,c-1),f(r-1,c),f(r-1,c+1),
+    #         f(r,c-1),  f(r,c),  f(r,c+1),
+    #         f(r+1,c-1),f(r+1,c),f(r+1,c+1),
+    #        ]
+
     return any(list)
