@@ -1,6 +1,7 @@
 import random
 import copy
 from util import isNeighbor
+from math import floor
 
 example = [
     #0
@@ -248,6 +249,7 @@ example = [
 def getNoise(i,r,c):
     return round(random.uniform(0.1,0.3),3) if isNeighbor(example[i],r,c) else round(random.uniform(0.01,0.03),3)
 
+
 def generateSamples(index,sample_size1,sample_size2, GRID_DIM):
     samples = []
 
@@ -258,6 +260,7 @@ def generateSamples(index,sample_size1,sample_size2, GRID_DIM):
                 n = 0
                 for i in xrange(random.randint(1,4)):
                     n += getNoise(index,r,c)
+                print n
                 g[r][c] = min(1,example[index][r][c] + n)
         g[GRID_DIM[1] - 1].append(1)
         samples.append(g)
