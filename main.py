@@ -136,7 +136,7 @@ def train():
 
 def getNoise(r,c):
     global grid
-    return round(random.uniform(0.1,0.3),3) if isNeighbor(grid,r,c) else round(random.uniform(0.01,0.03),3)
+    return round(random.uniform(0,0.3),3) if isNeighbor(grid,r,c) else round(random.uniform(0,0.03),3)
 
 def noise():
     for r in xrange(GRID_DIM[0]):
